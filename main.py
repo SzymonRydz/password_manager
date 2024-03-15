@@ -3,7 +3,8 @@ from tkinter import messagebox
 import random
 import pyperclip
 import json
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+
 def generate_password():
 
     password = []
@@ -34,9 +35,10 @@ def append_to_file():
         is_ok = messagebox.askyesno(title=website_entry.get(), message=f"Save that data to file?\n"
                                                                     f"username: {username_entry.get()}\n"
                                                                     f"password: {password_entry.get()}\n")
+
         if is_ok:
             new_data = {
-                website_entry.get() : {
+                website_entry.get(): {
                     "email": username_entry.get(),
                     "password": password_entry.get()
                 }
@@ -54,11 +56,8 @@ def append_to_file():
                 with open("data.json", "w") as file:
                     json.dump(data, file, indent=4)
 
-            finally:
-                website_entry.delete(0, 'end')
-                username_entry.delete(0, 'end')
-                password_entry.delete(0, 'end')
-                website_entry.focus()
+
+
 
 def search_button():
     if website_entry.get() == "":
@@ -79,8 +78,6 @@ def search_button():
         messagebox.showwarning(title="Error!", message="Not Found a File!")
 
 
-# ---------------------------- UI SETUP ------------------------------- #
-
 window = tk.Tk()
 window.title("Password Manager")
 window.config(padx=20, pady=20)
@@ -93,12 +90,19 @@ canvas.grid(column=1, row=0)
 website_label = tk.Label(text="Website")
 website_label.grid(column=0,row=1)
 
+
 website_entry = tk.Entry(width=17)
 website_entry.grid(column=1,row=1)
 website_entry.focus()
 
 website_button = tk.Button(text="Search", width=15, command=search_button)
 website_button.grid(column=2, row=1)
+
+
+website_entry = tk.Entry(width=17)
+website_entry.grid(column=1,row=1)
+website_entry.focus()
+
 
 username_label = tk.Label(text="Email/Username")
 username_label.grid(column=0,row=2)
